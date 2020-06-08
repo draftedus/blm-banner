@@ -8,8 +8,9 @@ const CSS = `
         display: block;
     }
     #blm-modal {
-      font-family: {{fontFamily}}, Arial, sans-serif;
+      font-family: '{{fontFamily}}', sans-serif;
       color: {{primaryColor}};
+      font-weight: bold;
     }
     #blm-modal > .modal__overlay {
       position: fixed;
@@ -149,4 +150,11 @@ export function createStyleNode(config: $Config) {
     style.appendChild(document.createTextNode(finalCss));
   }
   return style;
+}
+
+export function createFontNode(fontFamily: string) {
+  let link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `https://fonts.googleapis.com/css2?family=${fontFamily}:wght@700&display=swap`;
+  return link;
 }

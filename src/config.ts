@@ -9,11 +9,15 @@ export type $Config = {
 
 let CONFIGURATION: $Config;
 
+/**
+ * If no configuration is provided, fallback to these defaults
+ * @param config
+ */
 function setConfigWithDefaults(config: $Config) {
   return {
-    primaryColor: 'blue',
-    backgroundColor: 'red',
-    fontFamily: 'Times New Roman',
+    primaryColor: '#FFFFFF',
+    backgroundColor: '#000000',
+    fontFamily: 'Teko',
     ...config,
   };
 }
