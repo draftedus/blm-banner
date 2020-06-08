@@ -503,7 +503,7 @@
     }
     var MODAL_ID = 'blm-modal';
 
-    var CSS = "\n    #blm-modal {\n      display: none;\n    }\n    #blm-modal.is-open {\n      display: block;\n    }\n    #blm-modal {\n      font-family: '{{fontFamily}}', sans-serif;\n      color: {{primaryColor}};\n      font-weight: bold;\n    }\n    #blm-modal > .modal__overlay {\n      position: fixed;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      background: {{backgroundColor}};\n      display: flex;\n      justify-content: center;\n      align-items: center;\n    }\n    #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__black {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: bold;\n      font-size: 104px;\n      line-height: 1;\n    }\n     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__lives {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: 600;\n      font-size: 140px;\n      line-height: 201px;\n    }\n     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__matter {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: 600;\n      font-size: 90px;\n      line-height: 1;\n    }\n    \n    #blm-modal > .modal__close {\n      background: transparent;\n      border: 0;\n    }\n    #blm-modal > .modal__header #blm-modal.modal__close:before { content: \"\\2715\"; }\n    #blm-modal > .modal__overlay .modal__container .modal__content {\n      margin-top: 3rem;\n      margin-bottom: 2rem;\n      min-width: 362px;\n      height: 70px;\n      border: 1px solid #FFFFFF;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      color: #fff;\n      font-size: 24px;\n      font-family: Inter, sans-serif;\n      padding-left: 5px;\n      padding-right: 5px;\n      cursor: pointer;\n    }\n";
+    var CSS = "\n    #blm-modal {\n      display: none;\n    }\n    #blm-modal.is-open {\n      display: block;\n    }\n    #blm-modal {\n      position: absolute;\n      z-index: 2147483638;\n      top: 0;\n      right: 0;\n      left: 0;\n      bottom: 0;\n      font-family: '{{fontFamily}}', sans-serif;\n      color: {{primaryColor}};\n      font-weight: bold;\n      overflow: hidden;\n    }\n    #blm-modal > .modal__overlay {\n      position: fixed;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      background: {{backgroundColor}};\n      display: flex;\n      justify-content: center;\n      align-items: center;\n    }\n    #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__black {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: bold;\n      font-size: 104px;\n      line-height: 1;\n    }\n     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__lives {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: 600;\n      font-size: 140px;\n      line-height: 201px;\n    }\n     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__matter {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: 600;\n      font-size: 90px;\n      line-height: 1;\n    }\n    #blm-modal > .modal__close {\n      background: transparent;\n      border: 0;\n    }\n    #blm-modal > .modal__header #blm-modal.modal__close:before { content: \"\\2715\"; }\n    #blm-modal > .modal__overlay .modal__container .modal__content {\n      margin-top: 3rem;\n      margin-bottom: 2rem;\n      min-width: 362px;\n      height: 70px;\n      border: 1px solid #FFFFFF;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      color: #fff;\n      font-size: 24px;\n      padding-left: 5px;\n      padding-right: 5px;\n      cursor: pointer;\n    }\n    @keyframes mmfadeIn {\n    from { opacity: 0; }\n      to { opacity: 1; }\n    }  \n    @keyframes mmfadeOut {\n        from { opacity: 1; }\n          to { opacity: 0; }\n    }\n    #blm-modal[aria-hidden=\"false\"] .modal__overlay {\n      animation: mmfadeIn 1s cubic-bezier(0.0, 0.0, 0.2, 1);\n    }       \n    #blm-modal[aria-hidden=\"true\"] .modal__overlay {\n      animation: mmfadeOut 1s cubic-bezier(0.0, 0.0, 0.2, 1);\n    }\n";
     /**
      * "Render" our template with the config
      * @param config
@@ -539,13 +539,13 @@
      * Setup our modal
      */
     function setupAndInjectModal() {
-        console.log("blm: init");
+        console.log('blm: init');
         var node = createModalNode(getConfiguration());
         var styleNode = createStyleNode(getConfiguration());
         document.body.appendChild(styleNode);
         document.body.appendChild(node);
         if (getConfiguration().preview) {
-            document.getElementById(MODAL_ID).classList.add("is-open");
+            document.getElementById(MODAL_ID).classList.add('is-open');
         }
         else {
             MicroModal.init();
@@ -564,21 +564,21 @@
         var fontNode = createFontNode(getConfiguration().fontFamily);
         document.head.appendChild(fontNode);
         // Add modal / style when DOM is ready
-        if (document.readyState !== "loading") {
+        if (document.readyState !== 'loading') {
             setupAndInjectModal();
         }
         else {
-            document.addEventListener("DOMContentLoaded", setupAndInjectModal);
+            document.addEventListener('DOMContentLoaded', setupAndInjectModal);
         }
     }
     // Run the modal right away for default config
     if (window.BLM && window.BLM._loadOptions) {
-        console.log("blm: opening modal with custom config", window.BLM._loadOptions);
+        console.log('blm: opening modal with custom config', window.BLM._loadOptions);
         init(window.BLM._loadOptions);
     }
     else {
-        console.log("blm: opening modal with default config");
-        init({ name: "site" });
+        console.log('blm: opening modal with default config');
+        init({ name: 'site' });
     }
 
 }());
