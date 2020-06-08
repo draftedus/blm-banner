@@ -141,29 +141,38 @@ const CSS = `
     }
 `;
 
+/**
+ * "Render" our template with the config
+ * @param config
+ */
 function replaceStylesWithConfig(config: $Config) {
   return CSS.replace('{{fontFamily}}', config.fontFamily)
     .replace('{{backgroundColor}}', config.backgroundColor)
     .replace('{{primaryColor}}', config.primaryColor);
 }
 
+/**
+ * Create `<style>` tag with configured CSS
+ * @param config
+ */
 export function createStyleNode(config: $Config) {
-  let style = document.createElement('style');
-  style.type = 'text/css';
+  const style = document.createElement('style') as HTMLStyleElement;
+  style.setAttribute('type', 'text/css');
   const finalCss = replaceStylesWithConfig(config);
-  // @ts-ignore
-  if (style.styleSheet) {
-    // @ts-ignore
-    style.styleSheet.cssText = finalCss;
-  } else {
-    style.appendChild(document.createTextNode(finalCss));
-  }
+  style.appendChild(document.createTextNode(finalCss));
   return style;
 }
 
+/**
+ * Create `<link>` tag for Google Font injection
+ * @param fontFamily
+ */
 export function createFontNode(fontFamily: string) {
-  let link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = `https://fonts.googleapis.com/css2?family=${fontFamily}:wght@700&display=swap`;
+  const link = document.createElement('link') as HTMLLinkElement;
+  link.setAttribute('rel', 'stylesheet');
+  link.setAttribute(
+    'href',
+    `https://fonts.googleapis.com/css2?family=${fontFamily}:wght@700&display=swap`,
+  );
   return link;
 }
