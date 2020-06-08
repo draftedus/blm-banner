@@ -1,0 +1,50 @@
+{
+  "name": "blm-banner",
+  "version": "1.0.0",
+  "description": "BLM banner for your website",
+  "main": "src/index.ts",
+  "dependencies": {
+    "micromodal": "^0.4.6"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "@rollup/plugin-typescript": "^4.1.2",
+    "@types/micromodal": "^0.3.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.9",
+    "prettier": "^2.0.5",
+    "rollup": "^2.14.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
+  },
+  "scripts": {
+    "build": "rollup src/index.ts --config rollup.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --single-quote --trailing-comma all --write src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/draftedus/blm-banner.git"
+  },
+  "keywords": [
+    "BLM",
+    "black",
+    "lives",
+    "matter",
+    "banner"
+  ],
+  "author": "Drafted, Inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/draftedus/blm-banner/issues"
+  },
+  "homepage": "https://github.com/draftedus/blm-banner#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js}": "prettier --single-quote --trailing-comma all --write"
+  }
+}
