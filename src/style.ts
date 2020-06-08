@@ -2,10 +2,10 @@ import { $Config } from './config';
 
 const CSS = `
     #blm-modal {
-        display: none;
+      display: none;
     }
     #blm-modal.is-open {
-        display: block;
+      display: block;
     }
     #blm-modal {
       font-family: '{{fontFamily}}', sans-serif;
