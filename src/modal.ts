@@ -29,7 +29,7 @@ const MODAL_HTML = `<div id="blm-modal" class="modal micromodal-slide" aria-hidd
           </div>
         </div>
         <div class="modal__content" data-micromodal-close aria-label="Close this dialog window">
-            Continue to {{name}} ->
+            Continue to {{name}}
         </div>
       </div>
     </div>
