@@ -24,26 +24,35 @@ const CSS = `
       align-items: center;
     }
     #blm-modal > .modal__overlay .modal__container .modal__header {
+      width: 360px
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between;    
       flex-direction: column;
       align-items: center;
     }
     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__black {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       font-weight: bold;
       font-size: 104px;
-      line-height: 149px;
+      line-height: 1;
     }
      #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__lives {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       font-weight: 600;
       font-size: 140px;
       line-height: 201px;
-      letter-spacing: 0.1em;
     }
      #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__matter {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       font-weight: 600;
       font-size: 90px;
-      line-height: 129px;
+      line-height: 1;
     }
     
     #blm-modal > .modal__close {

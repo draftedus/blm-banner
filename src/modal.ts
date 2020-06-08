@@ -6,13 +6,26 @@ const MODAL_HTML = `<div id="blm-modal" class="modal micromodal-slide" aria-hidd
       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <div class="modal__header">
           <div class="modal__title__black">
-            Black
+            <span>B</span>
+            <span>L</span>
+            <span>A</span>
+            <span>C</span>
+            <span>K</span>
           </div>
           <div class="modal__title__lives">
-            Lives
+            <span>L</span>
+            <span>I</span>
+            <span>V</span>
+            <span>E</span>
+            <span>S</span>
           </div>
           <div class="modal__title__matter">
-           Matter
+            <span>M</span>
+            <span>A</span>
+            <span>T</span>
+            <span>T</span>
+            <span>E</span>
+            <span>R</span>
           </div>
         </div>
         <div class="modal__content">
