@@ -14,11 +14,13 @@
     "lint-staged": "^10.2.9",
     "prettier": "^2.0.5",
     "rollup": "^2.14.0",
+    "rollup-plugin-uglify": "^6.0.4",
     "tslib": "^2.0.0",
     "typescript": "^3.9.5"
   },
   "scripts": {
     "build": "rollup src/index.ts --config rollup.config.js",
+    "build:production": "NODE_ENV=production rollup src/index.ts --config rollup.config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --single-quote --trailing-comma all --write src/"
   },
