@@ -54,12 +54,12 @@ function init(config: $Config) {
 }
 
 // Run the modal right away for default config
-if (window.BLM && window.BLM._loadOptions && !BLM_ALREADY_SHOWN) {
-  console.log('blm: opening modal with custom config', window.BLM._loadOptions);
-  init(window.BLM._loadOptions);
-} else {
-  console.log('blm: opening modal with default config');
-  init({ name: 'site' });
+if (!BLM_ALREADY_SHOWN) {
+  if (window.BLM && window.BLM._loadOptions) {
+    init(window.BLM._loadOptions);
+  } else {
+    init({ name: 'site' });
+  }
 }
 
 // Export this globally so we can call `init` in the script as `BLM.init(...)`
