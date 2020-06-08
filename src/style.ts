@@ -74,6 +74,7 @@ const CSS = `
       font-family: Inter, sans-serif;
       padding-left: 5px;
       padding-right: 5px;
+      cursor: pointer;
     }
 `;
 
