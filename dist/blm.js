@@ -499,8 +499,9 @@
             .createContextualFragment(replaceTextWithConfig(config));
     }
     function showModal() {
-        MicroModal.show('blm-modal');
+        MicroModal.show(MODAL_ID);
     }
+    var MODAL_ID = 'blm-modal';
 
     var CSS = "\n    #blm-modal {\n        display: none;\n    }\n    #blm-modal.is-open {\n        display: block;\n    }\n    #blm-modal {\n      font-family: '{{fontFamily}}', sans-serif;\n      color: {{primaryColor}};\n      font-weight: bold;\n    }\n    #blm-modal > .modal__overlay {\n      position: fixed;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      background: {{backgroundColor}};\n      display: flex;\n      justify-content: center;\n      align-items: center;\n    }\n    #blm-modal > .modal__overlay .modal__container .modal__header {\n      width: 362px\n      display: flex;\n      justify-content: space-between;    \n      flex-direction: column;\n      align-items: center;\n    }\n    #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__black {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: bold;\n      font-size: 104px;\n      line-height: 1;\n    }\n     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__lives {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: 600;\n      font-size: 140px;\n      line-height: 201px;\n    }\n     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__matter {\n      display: flex;\n      flex-direction: row;\n      justify-content: space-between;\n      font-weight: 600;\n      font-size: 90px;\n      line-height: 1;\n    }\n    \n    #blm-modal > .modal__close {\n      background: transparent;\n      border: 0;\n    }\n    #blm-modal > .modal__header #blm-modal.modal__close:before { content: \"\\2715\"; }\n    #blm-modal > .modal__overlay .modal__container .modal__content {\n      margin-top: 3rem;\n      margin-bottom: 2rem;\n      min-width: 362px;\n      height: 70px;\n      border: 1px solid #FFFFFF;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      color: #fff;\n      font-size: 24px;\n      font-family: Inter, sans-serif;\n      padding-left: 5px;\n      padding-right: 5px;\n      cursor: pointer;\n    }\n";
     /**
@@ -545,8 +546,13 @@
         document.body.appendChild(fontNode);
         document.body.appendChild(styleNode);
         document.body.appendChild(node);
-        MicroModal.init();
-        showModal();
+        if (getConfiguration().preview) {
+            document.getElementById(MODAL_ID).classList.add('is-open');
+        }
+        else {
+            MicroModal.init();
+            showModal();
+        }
     }
     /**
      * Function called by injection script to set configuration and add listener

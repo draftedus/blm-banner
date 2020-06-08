@@ -1,5 +1,5 @@
 import { $Config, configure, getConfiguration } from './config';
-import { createModalNode, showModal } from './modal';
+import { createModalNode, MODAL_ID, showModal } from './modal';
 import { createStyleNode, createFontNode } from './style';
 import MicroModal from 'micromodal';
 
@@ -14,8 +14,12 @@ function setupAndInjectModal() {
   document.body.appendChild(fontNode);
   document.body.appendChild(styleNode);
   document.body.appendChild(node);
-  MicroModal.init();
-  showModal();
+  if (getConfiguration().preview) {
+    document.getElementById(MODAL_ID).classList.add('is-open');
+  } else {
+    MicroModal.init();
+    showModal();
+  }
 }
 
 /**

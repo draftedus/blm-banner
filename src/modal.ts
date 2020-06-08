@@ -46,5 +46,7 @@ export function createModalNode(config: $Config) {
 }
 
 export function showModal() {
-  MicroModal.show('blm-modal');
+  MicroModal.show(MODAL_ID);
 }
+
+export const MODAL_ID = 'blm-modal';
