@@ -25,7 +25,7 @@ function setupAndInjectModal() {
  */
 function init(config: $Config) {
   configure(config);
-  if (document.readyState === 'interactive') {
+  if (document.readyState !== 'loading') {
     setupAndInjectModal();
   } else {
     document.addEventListener('DOMContentLoaded', setupAndInjectModal);
