@@ -4,27 +4,32 @@ import MicroModal from 'micromodal';
 const MODAL_HTML = `<div id="blm-modal" class="modal micromodal-slide" aria-hidden="true">
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-        <header class="modal__header">
-          <h2 class="modal__title" id="modal-1-title">
-            Micromodal
-          </h2>
-          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-        </header>
-        <main class="modal__content" id="modal-1-content">
-          <p>
-            Try hitting the <code>tab</code> key and notice how the focus stays within the modal itself. Also, <code>esc</code> to close modal.
-          </p>
-        </main>
-        <footer class="modal__footer">
-          <button class="modal__btn modal__btn-primary">Continue</button>
-          <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
-        </footer>
+        <div class="modal__header">
+          <div class="modal__title__black">
+            Black
+          </div>
+          <div class="modal__title__lives">
+            Lives
+          </div>
+          <div class="modal__title__matter">
+           Matter
+          </div>
+        </div>
+        <div class="modal__content">
+            Continue to {{name}} ->
+        </div>
       </div>
     </div>
   </div>`;
 
+function replaceTextWithConfig(config: $Config) {
+  return MODAL_HTML.replace('{{name}}', config.name);
+}
+
 export function createModalNode(config: $Config) {
-  return document.createRange().createContextualFragment(MODAL_HTML);
+  return document
+    .createRange()
+    .createContextualFragment(replaceTextWithConfig(config));
 }
 
 export function showModal() {

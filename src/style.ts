@@ -23,39 +23,48 @@ const CSS = `
       justify-content: center;
       align-items: center;
     }
-    #blm-modal > .modal__container {
-      background-color: #fff;
-      padding: 30px;
-      max-width: 500px;
-      max-height: 100vh;
-      border-radius: 4px;
-      overflow-y: auto;
-      box-sizing: border-box;
-    }
-    #blm-modal > .modal__header {
+    #blm-modal > .modal__overlay .modal__container .modal__header {
       display: flex;
       justify-content: space-between;
+      flex-direction: column;
       align-items: center;
     }
-    #blm-modal > .modal__title {
-      margin-top: 0;
-      margin-bottom: 0;
-      font-weight: 600;
-      font-size: 1.25rem;
-      line-height: 1.25;
-      color: #fff;
-      box-sizing: border-box;
+    #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__black {
+      font-weight: bold;
+      font-size: 104px;
+      line-height: 149px;
     }
+     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__lives {
+      font-weight: 600;
+      font-size: 140px;
+      line-height: 201px;
+      letter-spacing: 0.1em;
+    }
+     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__matter {
+      font-weight: 600;
+      font-size: 90px;
+      line-height: 129px;
+    }
+    
     #blm-modal > .modal__close {
       background: transparent;
       border: 0;
     }
     #blm-modal > .modal__header #blm-modal.modal__close:before { content: "\\2715"; }
-    #blm-modal > .modal__content {
-      margin-top: 2rem;
+    #blm-modal > .modal__overlay .modal__container .modal__content {
+      margin-top: 5rem;
       margin-bottom: 2rem;
-      line-height: 1.5;
+      min-width: 360px;
+      height: 70px;
+      border: 1px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #fff;
+      font-size: 24px;
+      font-family: Inter, sans-serif;
+      padding-left: 5px;
+      padding-right: 5px;
     }
     #blm-modal > .modal__btn {
       font-size: .875rem;
