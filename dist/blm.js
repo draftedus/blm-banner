@@ -539,15 +539,13 @@
      * Setup our modal
      */
     function setupAndInjectModal() {
-        console.log('blm: init');
-        var fontNode = createFontNode(getConfiguration().fontFamily);
+        console.log("blm: init");
         var node = createModalNode(getConfiguration());
         var styleNode = createStyleNode(getConfiguration());
-        document.body.appendChild(fontNode);
         document.body.appendChild(styleNode);
         document.body.appendChild(node);
         if (getConfiguration().preview) {
-            document.getElementById(MODAL_ID).classList.add('is-open');
+            document.getElementById(MODAL_ID).classList.add("is-open");
         }
         else {
             MicroModal.init();
@@ -560,22 +558,27 @@
      * @param config
      */
     function init(config) {
+        // Store config in local variable
         configure(config);
-        if (document.readyState !== 'loading') {
+        // Inject our font in <head> first
+        var fontNode = createFontNode(getConfiguration().fontFamily);
+        document.head.appendChild(fontNode);
+        // Add modal / style when DOM is ready
+        if (document.readyState !== "loading") {
             setupAndInjectModal();
         }
         else {
-            document.addEventListener('DOMContentLoaded', setupAndInjectModal);
+            document.addEventListener("DOMContentLoaded", setupAndInjectModal);
         }
     }
     // Run the modal right away for default config
     if (window.BLM && window.BLM._loadOptions) {
-        console.log('blm: opening modal with custom config', window.BLM._loadOptions);
+        console.log("blm: opening modal with custom config", window.BLM._loadOptions);
         init(window.BLM._loadOptions);
     }
     else {
-        console.log('blm: opening modal with default config');
-        init({ name: 'site' });
+        console.log("blm: opening modal with default config");
+        init({ name: "site" });
     }
 
 }());

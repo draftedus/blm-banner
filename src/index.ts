@@ -8,10 +8,8 @@ import MicroModal from 'micromodal';
  */
 function setupAndInjectModal() {
   console.log('blm: init');
-  const fontNode = createFontNode(getConfiguration().fontFamily);
   const node = createModalNode(getConfiguration());
   const styleNode = createStyleNode(getConfiguration());
-  document.body.appendChild(fontNode);
   document.body.appendChild(styleNode);
   document.body.appendChild(node);
   if (getConfiguration().preview) {
@@ -28,7 +26,14 @@ function setupAndInjectModal() {
  * @param config
  */
 function init(config: $Config) {
+  // Store config in local variable
   configure(config);
+
+  // Inject our font in <head> first
+  const fontNode = createFontNode(getConfiguration().fontFamily);
+  document.head.appendChild(fontNode);
+
+  // Add modal / style when DOM is ready
   if (document.readyState !== 'loading') {
     setupAndInjectModal();
   } else {
