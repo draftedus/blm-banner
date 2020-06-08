@@ -23,13 +23,6 @@ const CSS = `
       justify-content: center;
       align-items: center;
     }
-    #blm-modal > .modal__overlay .modal__container .modal__header {
-      width: 362px
-      display: flex;
-      justify-content: space-between;    
-      flex-direction: column;
-      align-items: center;
-    }
     #blm-modal > .modal__overlay .modal__container .modal__header .modal__title__black {
       display: flex;
       flex-direction: row;
