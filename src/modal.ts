@@ -35,18 +35,32 @@ const MODAL_HTML = `<div id="blm-modal" class="modal micromodal-slide" aria-hidd
     </div>
   </div>`;
 
+/**
+ * Replace our HTML with the name from the config
+ * @param config
+ */
 function replaceTextWithConfig(config: $Config) {
   return MODAL_HTML.replace('{{name}}', config.name);
 }
 
+/**
+ * Generate HTML node from string
+ * @param config
+ */
 export function createModalNode(config: $Config) {
   return document
     .createRange()
     .createContextualFragment(replaceTextWithConfig(config));
 }
 
+/**
+ * Show our modal via MicroModal
+ */
 export function showModal() {
   MicroModal.show(MODAL_ID);
 }
 
+/**
+ * HTML ID of the modal
+ */
 export const MODAL_ID = 'blm-modal';

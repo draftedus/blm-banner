@@ -3,6 +3,14 @@ import { createModalNode, MODAL_ID, showModal } from './modal';
 import { createStyleNode, createFontNode } from './style';
 import MicroModal from 'micromodal';
 
+// Check to see if we showed this already
+const BLM_COOKIE = 'BLM_MODAL_SHOWN';
+const BLM_ALREADY_SHOWN =
+  document.cookie.split(';').filter((c) => {
+    let [k, _v] = c.split('=');
+    return k == BLM_COOKIE;
+  }).length > 0;
+
 /**
  * Setup our modal
  */
@@ -10,12 +18,16 @@ function setupAndInjectModal() {
   console.log('blm: init');
   const node = createModalNode(getConfiguration());
   const styleNode = createStyleNode(getConfiguration());
-  document.body.appendChild(styleNode);
+  document.head.appendChild(styleNode);
   document.body.appendChild(node);
   if (getConfiguration().preview) {
     document.getElementById(MODAL_ID).classList.add('is-open');
   } else {
-    MicroModal.init();
+    MicroModal.init({
+      onShow: (modal) => {
+        document.cookie = `${BLM_COOKIE}=true`;
+      },
+    });
     showModal();
   }
 }
@@ -42,7 +54,7 @@ function init(config: $Config) {
 }
 
 // Run the modal right away for default config
-if (window.BLM && window.BLM._loadOptions) {
+if (window.BLM && window.BLM._loadOptions && !BLM_ALREADY_SHOWN) {
   console.log('blm: opening modal with custom config', window.BLM._loadOptions);
   init(window.BLM._loadOptions);
 } else {
