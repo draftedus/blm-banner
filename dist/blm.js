@@ -528,8 +528,7 @@
      * Setup our modal
      */
     function setupAndInjectModal() {
-        console.log('blm banner init');
-        configure({ name: 'Drafted Test' });
+        console.log('blm: init');
         var fontNode = createFontNode(getConfiguration().fontFamily);
         var node = createModalNode();
         var styleNode = createStyleNode(getConfiguration());
@@ -539,7 +538,28 @@
         MicroModal.init();
         showModal();
     }
-    // Inject as soon as the DOM is ready (don't wait for window.onload)
-    document.addEventListener('DOMContentLoaded', setupAndInjectModal);
+    /**
+     * Function called by injection script to set configuration and add listener
+     * NOTE: Inject as soon as the DOM is ready (don't wait for window.onload)
+     * @param config
+     */
+    function init(config) {
+        configure(config);
+        if (document.readyState === 'interactive') {
+            setupAndInjectModal();
+        }
+        else {
+            document.addEventListener('DOMContentLoaded', setupAndInjectModal);
+        }
+    }
+    // Run the modal right away for default config
+    if (window.BLM && window.BLM._loadOptions) {
+        console.log('blm: opening modal with custom config', window.BLM._loadOptions);
+        init(window.BLM._loadOptions);
+    }
+    else {
+        console.log('blm: opening modal with default config');
+        init({ name: 'site' });
+    }
 
 }());
