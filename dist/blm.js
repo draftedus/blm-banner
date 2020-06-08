@@ -494,7 +494,9 @@
         return MODAL_HTML.replace('{{name}}', config.name);
     }
     function createModalNode(config) {
-        return document.createRange().createContextualFragment(replaceTextWithConfig(config));
+        return document
+            .createRange()
+            .createContextualFragment(replaceTextWithConfig(config));
     }
     function showModal() {
         MicroModal.show('blm-modal');

@@ -5,6 +5,7 @@ export type $Config = {
   backgroundColor?: string;
   metricsEnabled?: boolean;
   metricsUrl?: string;
+  preview?: boolean;
 };
 
 let CONFIGURATION: $Config;
@@ -18,6 +19,7 @@ function setConfigWithDefaults(config: $Config) {
     primaryColor: '#FFFFFF',
     backgroundColor: '#000000',
     fontFamily: 'Teko',
+    preview: false,
     ...config,
   };
 }
