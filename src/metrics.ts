@@ -6,7 +6,7 @@ export async function trackDomain(name: string, metricsUrl: string) {
   return fetch(metricsUrl, {
     mode: 'cors',
     cache: 'no-cache',
-    method: 'GET',
+    method: 'HEAD',
     headers: { 'x-blm-tech-website-name': name },
   });
 }
