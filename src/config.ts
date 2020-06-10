@@ -20,6 +20,8 @@ function setConfigWithDefaults(config: $Config) {
     backgroundColor: '#000000',
     fontFamily: 'Teko',
     preview: false,
+    metricsEnabled: false,
+    metricsUrl: 'https://blmtech-prod.drft.workers.dev',
     ...config,
   };
 }

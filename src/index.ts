@@ -3,6 +3,7 @@ import { createModalNode, MODAL_ID, showModal } from './modal';
 import { createStyleNode, createFontNode } from './style';
 import MicroModal from 'micromodal';
 import * as Cookies from 'es-cookie';
+import { trackDomain } from './metrics';
 
 // Check to see if we showed this already
 const BLM_COOKIE = 'BLM_MODAL_SHOWN';
@@ -37,21 +38,29 @@ function init(config: $Config) {
   const fontNode = createFontNode(getConfiguration().fontFamily);
   document.head.appendChild(fontNode);
 
-  // Add modal / style when DOM is ready
-  if (document.readyState !== 'loading') {
-    setupAndInjectModal();
-  } else {
-    document.addEventListener('DOMContentLoaded', setupAndInjectModal);
+  // Collect metrics if we are allowed to
+  if (getConfiguration().metricsEnabled) {
+    trackDomain(
+      getConfiguration().name,
+      getConfiguration().metricsUrl,
+    ).catch((e) => console.error('Failed to send metrics', e));
+  }
+
+  // Add modal / style when DOM is ready, only if cookie doesn't exist
+  if (!Cookies.get(BLM_COOKIE)) {
+    if (document.readyState !== 'loading') {
+      setupAndInjectModal();
+    } else {
+      document.addEventListener('DOMContentLoaded', setupAndInjectModal);
+    }
   }
 }
 
-// Run the modal right away for default config
-if (!Cookies.get(BLM_COOKIE)) {
-  if (window.BLM && window.BLM._loadOptions) {
-    init(window.BLM._loadOptions);
-  } else {
-    init({ name: 'site' });
-  }
+// Setup the config from the snippet
+if (window.BLM && window.BLM._loadOptions) {
+  init(window.BLM._loadOptions);
+} else {
+  init({ name: 'site' });
 }
 
 // Export this globally so we can call `init` in the script as `BLM.init(...)`
