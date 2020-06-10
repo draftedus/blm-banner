@@ -2,20 +2,15 @@ import { $Config, configure, getConfiguration } from './config';
 import { createModalNode, MODAL_ID, showModal } from './modal';
 import { createStyleNode, createFontNode } from './style';
 import MicroModal from 'micromodal';
+import * as Cookies from 'es-cookie';
 
 // Check to see if we showed this already
 const BLM_COOKIE = 'BLM_MODAL_SHOWN';
-const BLM_ALREADY_SHOWN =
-  document.cookie.split(';').filter((c) => {
-    let [k, _v] = c.split('=');
-    return k == BLM_COOKIE;
-  }).length > 0;
 
 /**
  * Setup our modal
  */
 function setupAndInjectModal() {
-  console.log('blm: init');
   const node = createModalNode(getConfiguration());
   const styleNode = createStyleNode(getConfiguration());
   document.head.appendChild(styleNode);
@@ -23,12 +18,9 @@ function setupAndInjectModal() {
   if (getConfiguration().preview) {
     document.getElementById(MODAL_ID).classList.add('is-open');
   } else {
-    MicroModal.init({
-      onShow: (modal) => {
-        document.cookie = `${BLM_COOKIE}=true`;
-      },
-    });
+    MicroModal.init();
     showModal();
+    Cookies.set(BLM_COOKIE, 'true'); // store we showed it
   }
 }
 
@@ -54,7 +46,7 @@ function init(config: $Config) {
 }
 
 // Run the modal right away for default config
-if (!BLM_ALREADY_SHOWN) {
+if (!Cookies.get(BLM_COOKIE)) {
   if (window.BLM && window.BLM._loadOptions) {
     init(window.BLM._loadOptions);
   } else {

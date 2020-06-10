@@ -4,9 +4,11 @@
   "description": "BLM banner for your website",
   "main": "src/index.ts",
   "dependencies": {
+    "es-cookie": "^1.3.2",
     "micromodal": "^0.4.6"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@rollup/plugin-typescript": "^4.1.2",
     "@types/micromodal": "^0.3.1",
